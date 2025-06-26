@@ -1,63 +1,155 @@
-[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-2e0aaae1b6195c2367325f4f02e2d04e9abb55f0b24a779b69b11b9e10269abc.svg)](https://classroom.github.com/online_ide?assignment_repo_id=19856656&assignment_repo_type=AssignmentRepo)
-# Express.js RESTful API Assignment
+# 📦 Week 2 Express.js Assignment
 
-This assignment focuses on building a RESTful API using Express.js, implementing proper routing, middleware, and error handling.
+This project is a fully functional **Express.js API** for managing a collection of products. It includes RESTful routes, custom middleware, validation, filtering, and pagination — all using an in-memory JavaScript array.
 
-## Assignment Overview
+---
 
-You will:
-1. Set up an Express.js server
-2. Create RESTful API routes for a product resource
-3. Implement custom middleware for logging, authentication, and validation
-4. Add comprehensive error handling
-5. Develop advanced features like filtering, pagination, and search
+## 🚀 How to Run
 
-## Getting Started
+### 1. Clone the repository
 
-1. Accept the GitHub Classroom assignment invitation
-2. Clone your personal repository that was created by GitHub Classroom
-3. Install dependencies:
-   ```
-   npm install
-   ```
-4. Run the server:
-   ```
-   npm start
-   ```
+```bash
+git clone <your-github-repo-url>
+cd week-2-express-js-assignment
+```
 
-## Files Included
+### 2. Install dependencies
 
-- `Week2-Assignment.md`: Detailed assignment instructions
-- `server.js`: Starter Express.js server file
-- `.env.example`: Example environment variables file
+```bash
+npm install
+```
 
-## Requirements
+### 3. Start the server
 
-- Node.js (v18 or higher)
-- npm or yarn
-- Postman, Insomnia, or curl for API testing
+```bash
+npm run dev      # Starts with nodemon (development)
+# or
+npm start        # Starts with node
+```
 
-## API Endpoints
+Server runs on:
 
-The API will have the following endpoints:
+```
+http://localhost:3000
+```
 
-- `GET /api/products`: Get all products
-- `GET /api/products/:id`: Get a specific product
-- `POST /api/products`: Create a new product
-- `PUT /api/products/:id`: Update a product
-- `DELETE /api/products/:id`: Delete a product
+---
 
-## Submission
+## 📚 API Documentation
 
-Your work will be automatically submitted when you push to your GitHub Classroom repository. Make sure to:
+### ✅ Root Endpoint
 
-1. Complete all the required API endpoints
-2. Implement the middleware and error handling
-3. Document your API in the README.md
-4. Include examples of requests and responses
+* `GET /`
 
-## Resources
+  * Returns welcome message.
 
-- [Express.js Documentation](https://expressjs.com/)
-- [RESTful API Design Best Practices](https://restfulapi.net/)
-- [HTTP Status Codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status) 
+### 📦 Products Endpoints
+
+#### Get all products
+
+* `GET /api/products`
+* Optional Query:
+
+  * `category`: filter by category
+  * `page`, `limit`: pagination
+
+#### Get product by ID
+
+* `GET /api/products/:id`
+
+#### Create a product
+
+* `POST /api/products`
+* Headers: `x-api-key: your_api_key`
+* Body:
+
+```json
+{
+  "name": "Product Name",
+  "description": "Some description",
+  "price": 123.45,
+  "category": "electronics",
+  "inStock": true
+}
+```
+
+#### Update product
+
+* `PUT /api/products/:id`
+* Headers: `x-api-key: your_api_key`
+* Body: Same as POST
+
+#### Delete product
+
+* `DELETE /api/products/:id`
+
+#### Product statistics
+
+* `GET /api/products/stats`
+* Returns product count per category.
+
+---
+
+## 🔐 Middleware Used
+
+### Logger Middleware
+
+Logs HTTP method, URL, and timestamp of every request.
+
+### Authentication Middleware
+
+Checks for `x-api-key` in headers. Blocks unauthorized requests.
+
+### Validation Middleware
+
+Ensures product fields are valid before creation/update.
+
+---
+
+## 🧪 Testing Tools
+
+* [Postman](https://www.postman.com/)
+* [Insomnia](https://insomnia.rest/)
+* `curl`
+
+---
+
+## 📁 Project Structure
+
+```
+week-2-express-js-assignment/
+├── server.js
+├── package.json
+├── middleware/
+│   ├── auth.js
+│   ├── logger.js
+│   └── validate.js
+├── README.md
+└── .env.example
+```
+
+---
+
+## 🧩 Environment Variables
+
+Create a `.env` file based on this example:
+
+**.env.example**
+
+```
+API_KEY=your_api_key
+PORT=3000
+```
+
+---
+
+## 👨‍🏫 Instructor Notes
+
+* Built using Express.js and in-memory data.
+* API is secure, validated, and production-friendly.
+
+---
+
+## 🧠 Author
+
+Norman Wayaya (Sci-Norman)
